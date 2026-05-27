@@ -1,0 +1,6 @@
+export { default as DotExplorer } from "./DotExplorer.vue"
+export { default as DotEditor } from "../components/DotEditor.vue"
+export { default as GraphPanel } from "../components/GraphPanel.vue"
+export { default as SplitPane } from "../components/SplitPane.vue"
+export { useGraphviz, getViz } from "../composables/useGraphviz.js"
+export { useHighlight } from "../composables/useHighlight.js"

@@ -15,9 +15,13 @@ import { ref, onMounted, onUnmounted } from "vue"
 
 const props = defineProps({
   defaultLeftWidth: { type: Number, default: 40 },
+  storageKey: { type: String, default: "" },
 })
 
-const leftWidth = ref(props.defaultLeftWidth)
+const stored = props.storageKey
+  ? parseFloat(localStorage.getItem(props.storageKey))
+  : NaN
+const leftWidth = ref(!isNaN(stored) ? stored : props.defaultLeftWidth)
 const container = ref(null)
 let dragging = false
 
@@ -40,6 +44,9 @@ function onMouseUp() {
   dragging = false
   document.body.style.cursor = ""
   document.body.style.userSelect = ""
+  if (props.storageKey) {
+    localStorage.setItem(props.storageKey, leftWidth.value)
+  }
 }
 
 onMounted(() => {
